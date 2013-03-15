@@ -1,0 +1,16 @@
+{
+	"name": "spawn-async",
+	"version": "0.0.1",
+	"description": "spawn child processes asynchronously",
+	"main": "lib/spawn-async.js",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/davepacheco/node-spawn-async.git"
+	},
+	"keywords": [ "spawn", "async", "fork", "exec" ],
+	"license": "MIT",
+	"readmeFilename": "README.md",
+	"optionalDependencies": {
+		"bunyan": "*"
+	}
+}

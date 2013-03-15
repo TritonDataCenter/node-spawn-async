@@ -3,7 +3,7 @@
 ## Synopsis
 
     var mod_spawnasync = require('spawn-async');
-    var worker = mod_spawnasync.createWorker();
+    var worker = mod_spawnasync.createWorker({ 'log': log });
 
     /* ... */
 
@@ -48,9 +48,10 @@ unnecessarily pathological for otherwise reasonable workloads.
 
 ## API
 
-The basic object is the `Worker`, created with `createWorker()`.  This function
-takes no arguments.  The resulting object is an EventEmitter with the following
-methods:
+The basic object is the `Worker`, created with `createWorker(options)`.  The
+only supported option is "log", which is required and should be a
+node-bunyan-style logger.  The resulting object is an EventEmitter with the
+following methods:
 
 `aspawn(argv, [options], callback)`: invokes the program identified by argv,
 waits for it to exit, buffers stdout and stderr, and invokes `callback(err,
@@ -61,10 +62,11 @@ or other shell syntax; for that, just invoke `bash -c "..."` instead.
 different than Node's child\_process module but is consistent with the exec
 family of POSIX functions and how shells work.
 
-`options` may be an object with the following properties:
+`options` may be an object with the following property:
 
 * `env`: program environment (see exec(2); default: current environment)
-* `encoding`: string encoding for stdout and stderr (default: `'utf8'`)
+
+The stdout and stderr encoding is always `'utf8'`.
 
 `destroy()`: forcefully kills the worker process and causes pending `aspawn`
 commands to fail.  The behavior with respect to the corresponding child
