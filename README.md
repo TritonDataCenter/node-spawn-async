@@ -21,6 +21,7 @@
                 console.error(stderr);
             } else {
                 console.log(stdout);
+                worker.destroy();
             }
         });
 
@@ -69,10 +70,14 @@ family of POSIX functions and how shells work.
 The stdout and stderr encoding is always `'utf8'`.
 
 `destroy()`: forcefully kills the worker process and causes pending `aspawn`
-commands to fail.  The behavior with respect to the corresponding child
-processes is undefined, so you should only call this when you know there are no
-outstanding commands, when you don't care about leaving orphaned child processes
-around, or your system will automatically clean up such child processes.
+commands to fail.  The behavior with respect to the child processes that you've
+already launched is undefined, so you should only call this when you know there
+are no outstanding commands, when you don't care about leaving orphaned child
+processes around, or your system will automatically clean up such child
+processes.
+
+The worker process sticks around (leaving your Node program running) until you
+call `destroy()`.
 
 ### Events
 
