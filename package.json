@@ -5,7 +5,7 @@
 	"main": "lib/spawn-async.js",
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/davepacheco/node-spawn-async.git"
+		"url": "https://github.com/davepacheco/node-spawn-async.git"
 	},
 	"keywords": [ "spawn", "async", "fork", "exec" ],
 	"license": "MIT",
